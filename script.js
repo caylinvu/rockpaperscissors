@@ -7,20 +7,32 @@ function getComputerChoice() {
     let computerSelection;
 
     if (choice == 1) {
-        computerSelection = "Rock";
+        computerSelection = "rock";
     } else if (choice == 2) {
-        computerSelection = "Paper";
+        computerSelection = "paper";
     } else if (choice == 3) {
-        computerSelection = "Scissors";
+        computerSelection = "scissors";
     }
     console.log(computerSelection);
 }
 
 getComputerChoice();
 
-let playerSelection = prompt("Rock, Paper, or Scissors?");
-console.log(playerSelection);
+function getPlayerChoice() {
+    let playerSelection = prompt("Rock, Paper, or Scissors?");
+    console.log(playerSelection);
 
-playerSelection = playerSelection.toLowerCase();
-console.log(playerSelection);
+    playerSelection = playerSelection.toLowerCase();
+    console.log(playerSelection);
 
+    while (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
+        playerSelection = prompt("You have entered an invalid string. Please enter Rock, Paper, or Scissors:");
+    }
+    console.log(playerSelection);
+}
+
+getPlayerChoice();
+
+function playRound(playerSelection, computerSelection) {
+
+}
