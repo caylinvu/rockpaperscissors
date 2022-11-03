@@ -1,8 +1,6 @@
-console.log("Hello World!");
-
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3) + 1;
-    console.log(choice);
+    //console.log(choice);
 
     let computerSelection;
 
@@ -14,9 +12,10 @@ function getComputerChoice() {
         computerSelection = "scissors";
     }
     console.log("Computer: " + computerSelection);
+    return computerSelection;
 }
 
-getComputerChoice();
+//getComputerChoice();
 
 function getPlayerChoice() {
     let playerSelection = prompt("Rock, Paper, or Scissors?");
@@ -27,10 +26,50 @@ function getPlayerChoice() {
         playerSelection = playerSelection.toLowerCase();
     }
     console.log("Player: " + playerSelection);
+    return playerSelection;
 }
 
-getPlayerChoice();
+//getPlayerChoice();
 
 function playRound(playerSelection, computerSelection) {
-
+    if (playerSelection == computerSelection) {
+        let result = "You tied!";
+        console.log(result);
+        return result;
+    } else if (playerSelection == "rock") {
+        if (computerSelection == "scissors") {
+            let result = "You win! Rock beats scissors!";
+            console.log(result);
+            return result;
+        } else if (computerSelection == "paper") {
+            let result = "You lose! Paper beats rock!";
+            console.log(result);
+            return result;
+        }
+    } else if (playerSelection == "paper") {
+        if (computerSelection == "rock") {
+            let result = "You win! Paper beats rock!";
+            console.log(result);
+            return result;
+        } else if (computerSelection == "scissors") {
+            let result = "You lose! Scissors beats paper!";
+            console.log(result);
+            return result;
+        }
+    } else if (playerSelection == "scissors") {
+        if (computerSelection == "paper") {
+            let result = "You win! Scissors beats paper!";
+            console.log(result);
+            return result;
+        } else if (computerSelection == "rock") {
+            let result = "You lose! Rock beats scissors!";
+            console.log(result);
+            return result;
+        }
+    }
 }
+
+playRound(getPlayerChoice(), getComputerChoice());
+
+//console.log("Player: " + playerSelection);
+//console.log("Computer: " + computerSelection);
