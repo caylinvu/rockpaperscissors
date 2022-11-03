@@ -13,22 +13,20 @@ function getComputerChoice() {
     } else if (choice == 3) {
         computerSelection = "scissors";
     }
-    console.log(computerSelection);
+    console.log("Computer: " + computerSelection);
 }
 
 getComputerChoice();
 
 function getPlayerChoice() {
     let playerSelection = prompt("Rock, Paper, or Scissors?");
-    console.log(playerSelection);
-
     playerSelection = playerSelection.toLowerCase();
-    console.log(playerSelection);
 
     while (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
         playerSelection = prompt("You have entered an invalid string. Please enter Rock, Paper, or Scissors:");
+        playerSelection = playerSelection.toLowerCase();
     }
-    console.log(playerSelection);
+    console.log("Player: " + playerSelection);
 }
 
 getPlayerChoice();
