@@ -33,30 +33,30 @@ function getPlayerChoice() {
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection == computerSelection) {
-        let result = "You tied!";
+        let result = `You tied! You both chose ${playerSelection}!`;
         return result;
     } else if (playerSelection == "rock") {
         if (computerSelection == "scissors") {
-            let result = "You win!";
+            let result = `You win! ${playerSelection} beats ${computerSelection}!`;
             return result;
         } else if (computerSelection == "paper") {
-            let result = "You lose!";
+            let result = `You lose! ${computerSelection} beats ${playerSelection}!`;
             return result;
         }
     } else if (playerSelection == "paper") {
         if (computerSelection == "rock") {
-            let result = "You win!";
+            let result = `You win! ${playerSelection} beats ${computerSelection}!`;
             return result;
         } else if (computerSelection == "scissors") {
-            let result = "You lose!";
+            let result = `You lose! ${computerSelection} beats ${playerSelection}!`;
             return result;
         }
     } else if (playerSelection == "scissors") {
         if (computerSelection == "paper") {
-            let result = "You win!";
+            let result = `You win! ${playerSelection} beats ${computerSelection}!`;
             return result;
         } else if (computerSelection == "rock") {
-            let result = "You lose!";
+            let result = `You lose! ${computerSelection} beats ${playerSelection}!`;
             return result;
         }
     }
@@ -72,9 +72,9 @@ function game() {
         let score = playRound(getPlayerChoice(), getComputerChoice());
         console.log(score);
         
-        if (score == "You lose!") {
+        if (score.slice(0, 8) == "You lose") {
             computerScore++;
-        } else if (score == "You win!") {
+        } else if (score.slice(0, 7) == "You win") {
             playerScore++;
         }
 
@@ -83,11 +83,11 @@ function game() {
     }
 
     if (computerScore == 5) {
-        let winner = "THE COMPUTER WINS!";
-        return winner;
+        let finalWinner = "THE COMPUTER IS THE FINAL WINNER!";
+        return finalWinner;
     } else if (playerScore == 5) {
-        let winner = "YOU WIN!";
-        return winner;
+        let finalWinner = "YOU ARE THE FINAL WINNER!";
+        return finalWinner;
     }
 }
 
