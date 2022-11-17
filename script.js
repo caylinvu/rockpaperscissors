@@ -68,7 +68,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-// function to play best 3 out of 5
+// function to play multiple rounds - first to 5 points wins
 
 function game() {
     let computerScore = 0;
