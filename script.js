@@ -63,9 +63,13 @@ function playRound(playerSelection, computerSelection) {
 // function to start new game
 
 function startNewGame() {
-    const newGame = document.createElement('button');
-    newGame.textContent = "Play Again";
-    container.appendChild(newGame);
+    const newGameButton = document.createElement('button');
+    const newDiv = document.createElement('newDiv');
+    newGameButton.classList.add("newGameButton");
+    newDiv.classList.add("newDiv");
+    newGameButton.textContent = "Play Again";
+    container.appendChild(newDiv);
+    newDiv.appendChild(newGameButton);
 
     newGame.addEventListener('click', () => {
         const finalResult = document.querySelector('.final');
@@ -104,7 +108,7 @@ function game() {
 
             const finalResult = document.createElement('div');
             finalResult.classList.add("final");
-
+        
             if (computerScore == 5) {
                 finalResult.textContent = "THE COMPUTER IS THE FINAL WINNER!";
                 container.appendChild(finalResult);

@@ -1,5 +1,28 @@
-#container {
+h1, .btns, .selection, .score, .results, .final, .newDiv {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    justify-content: center
+}
+
+h1 {
+    
+}
+
+.btns {
+    gap: 20px;
+}
+
+.selection, .score {
+    gap: 20px;
+}
+
+.results {
+
+}
+
+.final {
+
+}
+
+.playAgain {
+
 }
