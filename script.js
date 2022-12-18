@@ -38,31 +38,24 @@ function capitalizeFirstLetter(string) {
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-        let result = `You tied! You both chose ${playerSelection}!`;
-        return result;
+        return (`You tied! You both chose ${playerSelection}!`);
     } else if (playerSelection === "rock") {
         if (computerSelection === "scissors") {
-            let result = `You win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`;
-            return result;
+            return (`You win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`);
         } else if (computerSelection === "paper") {
-            let result = `You lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`;
-            return result;
+            return (`You lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`);
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            let result = `You win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`;
-            return result;
+            return (`You win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`);
         } else if (computerSelection === "scissors") {
-            let result = `You lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`;
-            return result;
+            return (`You lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`);
         }
     } else if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
-            let result = `You win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`;
-            return result;
+            return (`You win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`);
         } else if (computerSelection === "rock") {
-            let result = `You lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`;
-            return result;
+            return (`You lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`);
         }
     }   
 }
