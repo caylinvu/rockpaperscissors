@@ -1,3 +1,14 @@
+
+const buttons = document.querySelectorAll('button');
+const playScore = document.querySelector('.playScore');
+const compScore = document.querySelector('.compScore');
+const playSel = document.querySelector('.playSel');
+const compSel = document.querySelector('.compSel');
+const results = document.querySelector('.results');
+const container = document.querySelector('#container');
+let playerScore = 0;
+let computerScore = 0;
+
 // function to get the computer's input
 
 function getComputerChoice() {
@@ -11,22 +22,10 @@ function getComputerChoice() {
     } else if (choice == 3) {
         computerSelection = "scissors";
     }
-    console.log("Computer: " + computerSelection);
+
+    compSel.textContent = "Computer: " + computerSelection;
+
     return computerSelection;
-}
-
-// function to get the player's input
-
-function getPlayerChoice() {
-    let playerSelection = prompt("Rock, Paper, or Scissors?");
-    playerSelection = playerSelection.toLowerCase();
-
-    while (playerSelection != "rock" && playerSelection != "paper" && playerSelection != "scissors") {
-        playerSelection = prompt("You have entered an invalid string. Please enter Rock, Paper, or Scissors:");
-        playerSelection = playerSelection.toLowerCase();
-    }
-    console.log("Player: " + playerSelection);
-    return playerSelection;
 }
 
 // function to capitalize first letter
@@ -38,65 +37,98 @@ function capitalizeFirstLetter(string) {
 // function to play one round
 
 function playRound(playerSelection, computerSelection) {
-    if (playerSelection == computerSelection) {
+    if (playerSelection === computerSelection) {
         let result = `You tied! You both chose ${playerSelection}!`;
         return result;
-    } else if (playerSelection == "rock") {
-        if (computerSelection == "scissors") {
+    } else if (playerSelection === "rock") {
+        if (computerSelection === "scissors") {
             let result = `You win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`;
             return result;
-        } else if (computerSelection == "paper") {
+        } else if (computerSelection === "paper") {
             let result = `You lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`;
             return result;
         }
-    } else if (playerSelection == "paper") {
-        if (computerSelection == "rock") {
+    } else if (playerSelection === "paper") {
+        if (computerSelection === "rock") {
             let result = `You win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`;
             return result;
-        } else if (computerSelection == "scissors") {
+        } else if (computerSelection === "scissors") {
             let result = `You lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`;
             return result;
         }
-    } else if (playerSelection == "scissors") {
-        if (computerSelection == "paper") {
+    } else if (playerSelection === "scissors") {
+        if (computerSelection === "paper") {
             let result = `You win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`;
             return result;
-        } else if (computerSelection == "rock") {
+        } else if (computerSelection === "rock") {
             let result = `You lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`;
             return result;
         }
-    }
+    }   
 }
 
-// function to play multiple rounds - first to 5 points wins
+// function to start new game
+
+function startNewGame() {
+    const newGame = document.createElement('button');
+    newGame.textContent = "Play Again";
+    container.appendChild(newGame);
+
+    newGame.addEventListener('click', () => {
+        const finalResult = document.querySelector('.final');
+        playerScore = 0;
+        computerScore = 0;
+        
+        playScore.textContent = "Player Score: " + playerScore;
+        compScore.textContent = "Computer Score: " + computerScore;
+        playSel.textContent = '';
+        compSel.textContent = '';
+        results.textContent = '';
+        container.removeChild(finalResult);
+        container.removeChild(newGame);
+
+        buttons.forEach(button => button.disabled = false);
+    })
+}
 
 function game() {
-    let computerScore = 0;
-    let playerScore = 0;
-    while (computerScore < 5 && playerScore < 5) {
-    
-        let score = playRound(getPlayerChoice(), getComputerChoice());
-        console.log(score);
-        
-        if (score.slice(0, 8) == "You lose") {
-            computerScore++;
-        } else if (score.slice(0, 7) == "You win") {
-            playerScore++;
-        }
+    buttons.forEach((button) => {
+        button.addEventListener('click', function (e) {
+            let playerSelection = e.target.id;
+            playSel.textContent = "Player: " + playerSelection;
+            
+            let roundWinner = playRound(playerSelection, getComputerChoice());
+            results.textContent = roundWinner;
 
-        console.log("Computer score: " + computerScore);
-        console.log("Player score: " + playerScore);
-    }
+            if (roundWinner.slice(0, 8) == "You lose") {
+                computerScore++;
+            } else if (roundWinner.slice(0, 7) == "You win") {
+                playerScore++;
+            }
 
-    if (computerScore == 5) {
-        let finalWinner = "THE COMPUTER IS THE FINAL WINNER!";
-        return finalWinner;
-    } else if (playerScore == 5) {
-        let finalWinner = "YOU ARE THE FINAL WINNER!";
-        return finalWinner;
-    }
+            playScore.textContent = "Player Score: " + playerScore;
+            compScore.textContent = "Computer Score: " + computerScore;
+
+            const finalResult = document.createElement('div');
+            finalResult.classList.add("final");
+
+            if (computerScore == 5) {
+                finalResult.textContent = "THE COMPUTER IS THE FINAL WINNER!";
+                container.appendChild(finalResult);
+                buttons.forEach(button => button.disabled = true);
+                startNewGame();
+            } else if (playerScore == 5) {
+                finalResult.textContent = "YOU ARE THE FINAL WINNER!";
+                container.appendChild(finalResult);
+                buttons.forEach(button => button.disabled = true);
+                startNewGame();
+            }
+        });
+    });
 }
 
-console.log(game());
 
+playScore.textContent = "Player Score: " + playerScore;
+compScore.textContent = "Computer Score: " + computerScore;
 
+game();
