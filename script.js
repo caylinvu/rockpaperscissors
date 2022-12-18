@@ -6,6 +6,7 @@ const playSel = document.querySelector('.playSel');
 const compSel = document.querySelector('.compSel');
 const results = document.querySelector('.results');
 const container = document.querySelector('#container');
+const rules = document.querySelector('.rules');
 let playerScore = 0;
 let computerScore = 0;
 
@@ -23,7 +24,7 @@ function getComputerChoice() {
         computerSelection = "scissors";
     }
 
-    compSel.textContent = "Computer: " + computerSelection;
+    compSel.textContent = "Computer: " + capitalizeFirstLetter(computerSelection);
 
     return computerSelection;
 }
@@ -41,21 +42,21 @@ function playRound(playerSelection, computerSelection) {
         return (`You tied! You both chose ${playerSelection}!`);
     } else if (playerSelection === "rock") {
         if (computerSelection === "scissors") {
-            return (`You win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`);
+            return (`You won this round! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`);
         } else if (computerSelection === "paper") {
-            return (`You lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`);
+            return (`You lost this round! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`);
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            return (`You win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`);
+            return (`You won this round! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`);
         } else if (computerSelection === "scissors") {
-            return (`You lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`);
+            return (`You lost this round! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`);
         }
     } else if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
-            return (`You win! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`);
+            return (`You won this round! ${capitalizeFirstLetter(playerSelection)} beats ${computerSelection}!`);
         } else if (computerSelection === "rock") {
-            return (`You lose! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`);
+            return (`You lost this round! ${capitalizeFirstLetter(computerSelection)} beats ${playerSelection}!`);
         }
     }   
 }
@@ -71,7 +72,7 @@ function startNewGame() {
     container.appendChild(newDiv);
     newDiv.appendChild(newGameButton);
 
-    newGame.addEventListener('click', () => {
+    newGameButton.addEventListener('click', () => {
         const finalResult = document.querySelector('.final');
         playerScore = 0;
         computerScore = 0;
@@ -82,7 +83,7 @@ function startNewGame() {
         compSel.textContent = '';
         results.textContent = '';
         container.removeChild(finalResult);
-        container.removeChild(newGame);
+        newDiv.removeChild(newGameButton);
 
         buttons.forEach(button => button.disabled = false);
     })
@@ -91,15 +92,15 @@ function startNewGame() {
 function game() {
     buttons.forEach((button) => {
         button.addEventListener('click', function (e) {
-            let playerSelection = e.target.id;
-            playSel.textContent = "Player: " + playerSelection;
+            let playerSelection = e.target.classList.value;
+            playSel.textContent = "Player: " + capitalizeFirstLetter(playerSelection);
             
             let roundWinner = playRound(playerSelection, getComputerChoice());
             results.textContent = roundWinner;
 
-            if (roundWinner.slice(0, 8) == "You lose") {
+            if (roundWinner.slice(0, 8) == "You lost") {
                 computerScore++;
-            } else if (roundWinner.slice(0, 7) == "You win") {
+            } else if (roundWinner.slice(0, 7) == "You won") {
                 playerScore++;
             }
 
@@ -110,12 +111,12 @@ function game() {
             finalResult.classList.add("final");
         
             if (computerScore == 5) {
-                finalResult.textContent = "THE COMPUTER IS THE FINAL WINNER!";
+                finalResult.textContent = "BOO, THE COMPUTER BEAT YOU!!!";
                 container.appendChild(finalResult);
                 buttons.forEach(button => button.disabled = true);
                 startNewGame();
             } else if (playerScore == 5) {
-                finalResult.textContent = "YOU ARE THE FINAL WINNER!";
+                finalResult.textContent = "CONGRATS, YOU ARE THE FINAL WINNER!!!";
                 container.appendChild(finalResult);
                 buttons.forEach(button => button.disabled = true);
                 startNewGame();
