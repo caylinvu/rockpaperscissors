@@ -63,10 +63,10 @@ function playRound(playerSelection, computerSelection) {
 // function to start new game
 
 function startNewGame() {
-    const newGameButton = document.createElement('button');
     const newDiv = document.createElement('newDiv');
-    newGameButton.classList.add("newGameButton");
+    const newGameButton = document.createElement('button');
     newDiv.classList.add("newDiv");
+    newGameButton.classList.add("newGameButton");
     newGameButton.textContent = "Play Again";
     container.appendChild(newDiv);
     newDiv.appendChild(newGameButton);
