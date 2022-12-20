@@ -10,71 +10,79 @@ body {
 }
 
 .heading {
-    padding-top: 70px;
-    padding-bottom: 35px;
-    font-size: 60px;
+    padding-top: 40px;
+    padding-bottom: 25px;
+    font-size: 45px;
     font-weight: 500;
     white-space: nowrap;
 }
 
 .rules {
-    font-size: 30px;
-    padding-bottom: 40px;
+    font-size: 28px;
+    padding-bottom: 30px;
 }
 
 .score {
-    gap: 800px;
-    padding-bottom: 40px;
+    gap: 750px;
+    padding-bottom: 30px;
     font-size: 30px;
     white-space: nowrap;
 }
 
 .btns {
-    gap: 150px;
+    gap: 180px;
     padding: 10px;
 }
 
 .btns button {
     border: none;
     background-color: #ffe3db;
+    padding: 0px;
+    
+}
+
+.btns img {
+    width: 165px;
 }
 
 .btns button:hover {
-    margin-top: -50px;
+    margin-top: -45px;
     transition: 0.5s;
+    cursor: pointer;
 }
 
 .selection {
-    gap: 100px;
-    padding-top: 85px;
-    padding-bottom: 35px;
+    gap: 125px;
+    padding-top: 50px;
+    padding-bottom: 25px;
     font-size: 30px;
     white-space: nowrap;
 }
 
 .results {
     font-size: 30px;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
     white-space: nowrap;
 }
 
 .final {
-    font-size: 50px;
-    padding-bottom: 40px;
+    font-size: 35px;
+    padding-bottom: 25px;
     white-space: nowrap;
 }
 
 .newGameButton {
-    font-size: 25px;
+    font-size: 20px;
     font-family: "Autour One", sans-serif;
-    padding: 20px;
+    padding: 15px;
     background-color: #fbb03b;
     color: #8c6338;
     font-weight: 550;
     border-radius: 25px;
-    border: solid 5px #8c6338;
+    border: solid 3px #8c6338;
 }
 
 .newGameButton:hover {
     background-color: #f5a21c;
+    cursor: pointer;
 }
