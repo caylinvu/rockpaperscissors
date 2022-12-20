@@ -2,6 +2,8 @@ body {
     background-color: #ffe3db;
     font-family: "Autour One", sans-serif;
     color: #8c6338;
+    position: relative;
+    min-height: 100vh;
 }
 
 .heading, .rules, .btns, .selection, .score, .results, .final, .newDiv {
@@ -85,4 +87,24 @@ body {
 .newGameButton:hover {
     background-color: #f5a21c;
     cursor: pointer;
+}
+
+#container {
+    padding-bottom: 5rem;
+}
+
+.footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+
+}
+
+.logo {
+    width: 23px;
 }
